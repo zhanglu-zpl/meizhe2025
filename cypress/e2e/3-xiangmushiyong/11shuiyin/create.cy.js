@@ -1,5 +1,6 @@
 // 将测试用例导出为函数
 export const createWatermark = () => {
+
         // 创建水印活动
         // 检查页面是否有主图水印按钮并点击
         cy.contains('主图水印').should('be.visible').click();
@@ -49,8 +50,8 @@ export const createWatermark = () => {
          //点击仓库中
          cy.contains('仓库中').click();
 
-         //点击全选本页
-         cy.contains('全选本页').click().wait(2000);
+         //点击第一个选择商品
+         cy.contains('选择商品').eq(0).click();
 
          //点击弹窗中的确定
          cy.get('button.dplCurFj._10FPpG77._1O3lqufx._2NB3rG9u._1_W4UU-M.mzc-margin.mzc-margin-large').should('be.visible').click();
@@ -69,7 +70,7 @@ export const createWatermark = () => {
          cy.contains('确认发布').should('be.visible').click();
 
          //等待发布完成出现弹层
-         cy.wait(2000);
+         cy.wait(15000);
          //点击查看任务详情
          cy.contains('查看任务详情').should('be.visible').click();
 

@@ -1,4 +1,6 @@
 export const copyactivity= () => {
+    
+  cy.wait(8000);
       // 确认当前所在页面是水印活动列表页面
     cy.visit("https://meizhe.meideng.net/shuiyin-new/running");
 
@@ -55,7 +57,7 @@ export const copyactivity= () => {
     cy.contains('确认发布').should('be.visible').click();
 
     //等待发布完成出现弹层
-    cy.wait(3000);
+    cy.wait(13000);
 
     //点击查看任务详情
     cy.contains('查看任务详情').should('be.visible').click();
