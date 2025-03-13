@@ -7,6 +7,7 @@ import { setupTest } from '../common.js';
 import { addproducts } from './product.cy.js';
 import { modifyact } from './acttime.cy.js';
 import { copyactivity } from './copyact.cy.js';
+import { otheroperations } from './other.cy.js';
 
 // 测试套件
 describe("1:1水印功能完整流程测试", () => {
@@ -17,40 +18,29 @@ describe("1:1水印功能完整流程测试", () => {
   it("1. 创建水印", () => {
     createWatermark();
   });
+
+  it("2. 修改活动信息", () => {
+    modifyact();
+  });
   
-  it.only("2. 修改水印", () => {
+  it("3. 修改水印", () => {
     modifyWatermark();
   });
   
-  it("3. 结束并重开水印", () => {
+  it("4. 结束并重开水印", () => {
     restartWatermark();
   });
 
-  it("4. 添加删除商品", () => {
+  it("5. 添加删除商品", () => {
     addproducts();
-  });
-
-  it("5. 修改活动信息", () => {
-    modifyact();
   });
 
   it("6. 复制活动", () => {
     copyactivity();
   });
 
-  it("7. 详情进入编辑水印", () => {
-    
+  it.only("7. 其他操作（保存模板/永久删除）", () => {
+    otheroperations();
   });
-
-  it("8. 其他操作（保存模板/永久删除）", () => {
-    modifyact();
-  });
-
-
-
-
 
 });
-
-// 导出测试套件
-export default describe;

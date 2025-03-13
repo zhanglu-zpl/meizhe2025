@@ -73,4 +73,6 @@ export const createWatermark = () => {
          //点击查看任务详情
          cy.contains('查看任务详情').should('be.visible').click();
 
+         cy.wait(10000);
+
 };     
