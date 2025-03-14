@@ -20,6 +20,7 @@ export const restartWatermark = () => {
 
         //进入已结束活动列表
         cy.contains('已结束列表').should('be.visible').click();
+        cy.wait(5000);
 
         //点击重开按钮
         cy.contains('重开水印').should('be.visible').eq(0).click();
