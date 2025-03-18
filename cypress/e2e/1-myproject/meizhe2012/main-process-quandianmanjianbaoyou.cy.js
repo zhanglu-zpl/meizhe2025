@@ -76,6 +76,7 @@ describe('全店满减/包邮主流程',()=>{
         cy.get('@hengfuyulan').within(()=>{
             cy.contains('500元')
             .should('be.visible');
+            cy.contains('40元').should('be.visible');
         })
     })  
 })
