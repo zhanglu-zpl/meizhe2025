@@ -13,15 +13,18 @@ export const create34Watermark = () => {
     cy.contains('高级版').should('be.visible').click();
 
     // 悬停在第一个水印模板上并点击1:1水印按钮
-    cy.get('div.nVWvCqpy').eq(2).realHover();
+    cy.get('div.nVWvCqpy').eq(0).realHover();
 
     cy.get('div.nVWvCqpy').should('be.visible');
 
-    //等待悬停操作完成
-    cy.wait(3000);
-
     //点击3:4水印按钮
-    cy.get('button.yN3J_7cK.OrDuyDN3._10FPpG77._2HNw7_rq._1O3lqufx._3S4rs61U._3PMLNtoR.mzc-margin.mzc-margin.mzc-margin-small-horz.mzc-margin-xs-vert').should('be.visible').eq(2).click();
+    cy.get('div.OrDuyDN3._3WEGmgu3.TeWGv5Dl.mzc-row-container.mzc-margin.mzc-margin-small').should('be.visible').eq(2).click();
+
+    //取消1:1主图勾选
+    cy.get('div.OrDuyDN3._3WEGmgu3.TeWGv5Dl.mzc-row-container.mzc-margin.mzc-margin-small').should('be.visible').eq(0).click();
+
+    //点击创建水印活动
+    cy.get('button.DnvwO91p._10FPpG77._1O3lqufx._2NB3rG9u._1CC5_bmo.mzc-margin.mzc-margin-medium-horz.mzc-margin-small-vert').should('be.visible').eq(0).click();
 
     // 检查是否成功进入编辑器页面
     cy.url().should('include', 'shuiyin-new/create').wait(2000);
@@ -55,21 +58,34 @@ export const create34Watermark = () => {
      //点击第一个选择商品
      cy.contains('选择商品').eq(0).click();
 
-     cy.get('div:contains("商品已参加其他同类水印计划，本计划开始时将自动应用此水印，是否加入？")', { timeout: 5000 })
-     .then(($element) => {
-       if ($element.length > 0) {
-         cy.get('button._10FPpG77._1O3lqufx._2NB3rG9u._1CC5_bmo.mzc-margin.mzc-margin-medium-horz.mzc-margin-small-vert').click();
-       } else {
-         cy.log('弹窗未出现，继续执行后续操作');
-       }
-     });
-
+     // 处理可能出现的弹窗
+     cy.get('body').then($body => {
+      if ($body.find(':contains("商品已参加其他同类水印计划")').length > 0) {
+        cy.get('button._10FPpG77._1O3lqufx._2NB3rG9u._1CC5_bmo.mzc-margin.mzc-margin-medium-horz.mzc-margin-small-vert')
+          .click();
+      } else {
+        cy.log('弹窗未出现，继续执行后续操作');
+      }
+    });
 
      //点击仓库中
      cy.contains('仓库中').click();
 
      //点击第一个选择商品
      cy.contains('选择商品').eq(0).click();
+
+     // 处理可能出现的弹窗
+     cy.get('body').then($body => {
+      if ($body.find(':contains("商品已参加其他同类水印计划")').length > 0) {
+        cy.get('button._10FPpG77._1O3lqufx._2NB3rG9u._1CC5_bmo.mzc-margin.mzc-margin-medium-horz.mzc-margin-small-vert')
+          .click();
+      } else {
+        cy.log('弹窗未出现，继续执行后续操作');
+      }
+    });
+
+     //点击仓库中
+     cy.contains('仓库中').click();
 
      //点击弹窗中的确定
      cy.get('button.dplCurFj._10FPpG77._1O3lqufx._2NB3rG9u._1_W4UU-M.mzc-margin.mzc-margin-large').should('be.visible').click();

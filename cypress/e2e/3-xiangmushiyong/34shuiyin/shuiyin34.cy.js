@@ -10,7 +10,7 @@ describe("3:4水印功能完整流程测试", () => {
     setupTest();
   });
 
-  it("1. 创建水印", () => {
+  it.only("1. 创建水印", () => {
     create34Watermark();
   });
 
