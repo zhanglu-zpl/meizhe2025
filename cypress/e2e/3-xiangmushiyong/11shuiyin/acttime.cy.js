@@ -2,11 +2,18 @@ export const modifyact= () => {
       // 确认当前所在页面是水印活动列表页面
     cy.visit("https://meizhe.meideng.net/shuiyin-new/running");
 
+    // 处理"多尺寸水印上线"弹窗
+    cy.get('body').then($body => {
+      if ($body.find(':contains("多尺寸水印上线啦")').length) {
+          cy.contains('我知道了').click();
+      }
+  });
+
     //点击新功能引导，我知道了
     cy.contains('我知道了').should('be.visible').click();
 
     //hover悬停水印时间
-    cy.get('span._3LGKM2qI._1Zl0OFEp._3OHrno9B._2jWb2Uc6._3DXNfCAE.mzc-margin.mzc-margin-small-horz.mzc-margin-medium-vert')
+    cy.get('div.uaxnSlQq._3WEGmgu3.mzc-row-container.mzc-margin.mzc-margin-small')
     .eq(0)
     .realHover();
 

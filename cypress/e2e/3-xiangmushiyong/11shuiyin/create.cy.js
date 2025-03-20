@@ -20,8 +20,8 @@ export const createWatermark = () => {
         //等待悬停操作完成
         cy.wait(3000);
 
-        //点击1:1水印按钮
-        cy.get('button.yN3J_7cK.OrDuyDN3._10FPpG77._2HNw7_rq._1O3lqufx._3S4rs61U._3PMLNtoR.mzc-margin.mzc-margin.mzc-margin-small-horz.mzc-margin-xs-vert').should('be.visible').eq(0).click();
+        //点击创建水印活动
+        cy.get('button.DnvwO91p._10FPpG77._1O3lqufx._2NB3rG9u._1CC5_bmo.mzc-margin.mzc-margin-medium-horz.mzc-margin-small-vert').should('be.visible').eq(2).click();
   
         // 检查是否成功进入编辑器页面
         cy.url().should('include', 'shuiyin-new/create').wait(2000);

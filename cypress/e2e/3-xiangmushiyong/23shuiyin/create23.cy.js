@@ -1,5 +1,5 @@
 // 将测试用例导出为函数
-export const create34Watermark = () => {
+export const create23Watermark = () => {
 
     // 创建水印活动
     // 检查页面是否有主图水印按钮并点击
@@ -8,30 +8,9 @@ export const create34Watermark = () => {
 
     // 等待页面跳转跳到指定 URL
     cy.url().should('include', 'shuiyin-new/template');
-
-      // 处理"多尺寸水印上线"弹窗
-      cy.get('body').then($body => {
-        if ($body.find(':contains("多尺寸水印上线啦")').length) {
-            cy.contains('我知道了').click();
-        }
-    });
     
-    // 检查是否进入主图水印并点击高级版
-    cy.contains('高级版').should('be.visible').click();
-
-    // 悬停在第一个水印模板上并点击1:1水印按钮
-    cy.get('div.nVWvCqpy').eq(0).realHover();
-
-    cy.get('div.nVWvCqpy').should('be.visible');
-
-    //点击3:4水印按钮
-    cy.get('div.OrDuyDN3._3WEGmgu3.TeWGv5Dl.mzc-row-container.mzc-margin.mzc-margin-small').should('be.visible').eq(2).click();
-
-    //取消1:1主图勾选
-    cy.get('div.OrDuyDN3._3WEGmgu3.TeWGv5Dl.mzc-row-container.mzc-margin.mzc-margin-small').should('be.visible').eq(0).click();
-
-    //点击创建水印活动
-    cy.get('button.DnvwO91p._10FPpG77._1O3lqufx._2NB3rG9u._1CC5_bmo.mzc-margin.mzc-margin-medium-horz.mzc-margin-small-vert').should('be.visible').eq(0).click();
+    // 点击创建2:3 长图水印
+    cy.contains('创建 2:3 长图水印').should('be.visible').click();
 
     // 检查是否成功进入编辑器页面
     cy.url().should('include', 'shuiyin-new/create').wait(2000);
@@ -51,16 +30,12 @@ export const create34Watermark = () => {
      //结束引导
      cy.get('button.ant-btn.ant-btn-primary.ant-btn-color-primary.ant-btn-variant-solid.ant-btn-sm.ant-tour-next-btn').should('be.visible').click();
 
-     //点击图2-图5
-     ['图2', '图3', '图4', '图5'].forEach(text => {
-       cy.contains(text).click();
-     });
      
      //点击添加商品
      cy.get('div.v_xfjJRN._3WEGmgu3.TeWGv5Dl.mzc-column-container.mzc-margin.mzc-margin-small').should('be.visible').click();
 
-     //点击隐藏无3:4主图的商品
-     cy.contains('隐藏无3:4主图的商品').should('be.visible').click();
+     //点击隐藏无长图的商品
+     cy.contains('隐藏无长图的商品').should('be.visible').click();
      
      //点击第一个选择商品
      cy.contains('选择商品').eq(0).click();
