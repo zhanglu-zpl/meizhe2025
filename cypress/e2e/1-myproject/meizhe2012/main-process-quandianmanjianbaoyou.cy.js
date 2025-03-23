@@ -74,9 +74,27 @@ describe('全店满减/包邮主流程',()=>{
         cy.contains('活动橙').click();
         cy.contains('不显示横幅').parent().parent().parent().parent().next().as('hengfuyulan');
         cy.get('@hengfuyulan').within(()=>{
-            cy.contains('500元')
-            .should('be.visible');
-            cy.contains('40元').should('be.visible');
+            cy.contains('500').should('be.visible');
+            cy.contains('40').should('be.visible');
+            cy.contains('包邮').should('be.visible');
+            cy.contains('上不封顶').should('be.visible');
+            cy.contains('测试礼物').should('be.visible');
         })
-    })  
+        cy.contains('添加横幅到手机详情页').click();
+        cy.contains('添加多级优惠').click();
+        cy.contains('优惠 2').should('be.visible');
+        cy.contains('添加多级优惠').click();
+        cy.contains('优惠 3').should('be.visible');
+        cy.get('textarea[placeholder="补充您想让买家了解的其他活动信息"]').click()
+        .type('这是测试活动').wait(1000);
+        cy.contains('完成并提交').click();
+        cy.contains('活动创建成功').should('be.visible');
+        cy.contains('查看活动详情').should('be.visible');
+        cy.contains('返回活动列表').should('be.visible');
+        cy.contains('查看活动详情').click();
+        cy.url().should('contain','/huodong/fmjs-detail-v2');
+        cy.go('back').wait(1000);
+        cy.contains('返回活动列表').click();
+        cy.url().should('contain','/huodong/list-v2');
+    })    
 })
