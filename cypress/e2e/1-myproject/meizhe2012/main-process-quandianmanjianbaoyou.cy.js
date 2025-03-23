@@ -85,6 +85,8 @@ describe('全店满减/包邮主流程',()=>{
         cy.contains('优惠 2').should('be.visible');
         cy.contains('添加多级优惠').click();
         cy.contains('优惠 3').should('be.visible');
+        cy.get("i.icon-close2").click();
+        cy.contains('优惠3').should('not.exist');
         cy.get('textarea[placeholder="补充您想让买家了解的其他活动信息"]').click()
         .type('这是测试活动').wait(1000);
         cy.contains('完成并提交').click();
