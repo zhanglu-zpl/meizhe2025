@@ -1,4 +1,5 @@
 export const restartWatermark = () => {
+    // 结束活动/重开活动
     cy.wait(8000);
 
     // 进入水印活动列表页面
@@ -13,6 +14,10 @@ export const restartWatermark = () => {
 
     // 点击新功能引导，我知道了
     cy.contains('我知道了').should('be.visible').click();
+    let activityId;
+
+    // 拦截接口请求
+    cy.intercept('POST', 'https://meizhe.meideng.net/common/shuiyin2/proxy/api/act/list').as('getActList');
 
     // 点击结束水印活动
     cy.contains('结束水印').should('be.visible').eq(0).click();
@@ -21,9 +26,35 @@ export const restartWatermark = () => {
     cy.contains('确认').should('be.visible').click();
     cy.wait(2000);
 
+
+    // 等待接口请求完成
+    cy.wait('@getActList').its('response').then((response) => {
+        // 验证响应状态码
+        expect(response.status).to.equal(200);
+  
+        // 验证响应体中是否包含活动 ID
+        if (response.body.data && response.body.data.acts && response.body.data.acts.length > 0) {
+          activityId = response.body.data.acts[0].id;
+          cy.log('活动ID：', activityId);
+        } else {
+          cy.log('未找到活动 ID');
+        }
+    });
+
     // 进入已结束活动列表
     cy.contains('已结束列表').should('be.visible').click();
     cy.wait(5000);
+
+    // 验证活动已经结束
+    cy.get('.mzc-table-row').should('contain', activityId);
+    
+    // 验证未结束列表中不存在该活动
+    cy.contains('未结束列表').click();
+    cy.get('.mzc-table-row').should('not.contain', activityId);
+
+    // 返回已结束列表
+    cy.contains('已结束列表').click();
+    cy.wait(2000);
 
     // 点击重开按钮
     cy.contains('重开水印').should('be.visible').eq(0).click();
