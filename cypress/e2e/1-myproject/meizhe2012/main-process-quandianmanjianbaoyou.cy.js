@@ -212,5 +212,45 @@ describe('全店满减/包邮主流程',()=>{
             }
           });
         cy.contains('修改优惠').eq(0).click();
+        cy.contains('条件1').parent().parent().next().within(()=>{
+            cy.get('i.icon-danxuan').click();
+        });
+        cy.contains('条件1').parent().parent().next().children().eq(1).within(()=>{
+            cy.get('input').eq(1).clear().type('3');
+        });
+        cy.contains('内容1').parent().parent().next().within(()=>{
+            cy.get('i.icon-duoxuan').eq(0).click();
+        });
+        cy.contains('内容1').parent().parent().next().children().then(($neirong1)=>{
+            cy.get($neirong1).eq(1).within(()=>{
+                cy.get('input').eq(1).clear().type('8').wait(500);
+            })
+        });
+        cy.get('a').contains('设置包邮地区').click();
+        cy.get('p').contains('设置包邮地区').parent().next().within(()=>{
+            cy.contains('全不选').click();
+        });
+        cy.get('p').contains('设置包邮地区').parent().next().next().within(()=>{
+            cy.contains('确定').click();
+        });
+        cy.contains('优惠 2').click();
+        cy.get("i.icon-close2").click();
+        cy.contains('不显示横幅').parent().parent().parent().parent().next().as('hengfuyulan');
+        cy.get('@hengfuyulan').within(()=>{
+            cy.contains('3').should('be.visible');
+            cy.contains('8').should('be.visible');
+            cy.contains('包邮').should('not.exist');
+            cy.contains('上不封顶').should('not.exist');
+            cy.contains('测试礼物').should('be.visible');
+        });
+        cy.contains('完成并提交').click().wait(1000);
+        cy.contains('活动创建成功').should('be.visible');
+        cy.contains('查看活动详情').should('be.visible');
+        cy.contains('返回活动列表').should('be.visible');
+        cy.contains('查看活动详情').click();
+        cy.url().should('contain','/huodong/fmjs-detail-v2');
+        cy.go('back').wait(1000);
+        cy.contains('返回活动列表').click();
+        cy.url().should('contain','/huodong/list-v2');
     })
 })
