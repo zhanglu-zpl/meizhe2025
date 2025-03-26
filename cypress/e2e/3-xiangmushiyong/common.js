@@ -1,7 +1,7 @@
 
 export function setupTest() {
   // 通过设置 cookie 来模拟已登录状态
-  cy.setCookie("session", "5cd3346c-674d-4daa-a849-b337f76015d3");
+  cy.setCookie("session", "3ff06baf-c362-4734-b71d-14634a1b0e5d");
   
   // 访问美折网站首页
   cy.visit("https://meizhe.meideng.net/");

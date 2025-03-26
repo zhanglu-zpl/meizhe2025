@@ -4,6 +4,7 @@ export const addproducts = () => {
     // 添加商品
     // 确认当前所在页面是水印活动列表页面
     cy.visit("https://meizhe.meideng.net/shuiyin-new/running");
+    
 
      // 处理"多尺寸水印上线"弹窗
      cy.get('body').then($body => {
@@ -11,6 +12,7 @@ export const addproducts = () => {
             cy.contains('我知道了').click();
         }
     });
+
 
     //点击新功能引导，我知道了
     cy.contains('我知道了').should('be.visible').click();
@@ -37,6 +39,9 @@ export const addproducts = () => {
     // 验证回到活动列表页面
     cy.url().should('include', '/shuiyin-new/running');
 
+    //等待30秒
+    cy.wait(30000);
+    
     
     // 删除商品
     // 点击商品列表中的删除按钮

@@ -50,7 +50,7 @@ export const modifyWatermark = () => {
       cy.contains('确认修改').should('be.visible').click(); 
 
       //等待完成
-      cy.wait(5000);
+      cy.wait(10000);
 
       //提示发布成功点击查看任务详情
       cy.contains('查看任务详情').should('be.visible').click();

@@ -3,11 +3,20 @@ export const createSkuWatermark = () => {
     cy.contains('主图水印').should('be.visible').click();
     cy.wait(7000);
     cy.url().should('include', 'shuiyin-new/template');
+
+     // 处理"多尺寸水印上线"弹窗
+     cy.get('body').then($body => {
+        if ($body.find(':contains("多尺寸水印上线啦")').length) {
+            cy.contains('我知道了').click();
+        }
+    });
     
     // 选择水印类型
     cy.contains('高级版').should('be.visible').click();
     cy.get('div.nVWvCqpy').eq(0).realHover();
     cy.get('div.nVWvCqpy').should('be.visible');
+
+    
 
     // 选择SKU水印
     cy.get('div.OrDuyDN3._3WEGmgu3.TeWGv5Dl.mzc-row-container.mzc-margin.mzc-margin-small')
@@ -72,4 +81,7 @@ export const createSkuWatermark = () => {
     cy.wait(15000);
     cy.contains('查看任务详情').should('be.visible').click();
     cy.wait(10000);
+
+    //确认进入详情页
+    cy.url().should('include','shuiyin-new/detail?aid=');
 };
