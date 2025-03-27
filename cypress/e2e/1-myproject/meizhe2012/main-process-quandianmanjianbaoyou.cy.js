@@ -362,7 +362,7 @@ describe('全店满减/包邮主流程',()=>{
         });
         cy.get('button').contains('不结束').next().click();
     })
-    it.only('成功彻底删除折扣活动',()=>{
+    it('成功彻底删除折扣活动',()=>{
         cy.visit('https://meizhe.meideng.net/huodong/list-stopped-v2').wait(2000);
         cy.get('body').then(($body) => {
           const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
