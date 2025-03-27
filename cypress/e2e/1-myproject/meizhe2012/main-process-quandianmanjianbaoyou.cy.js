@@ -199,7 +199,7 @@ describe('全店满减/包邮主流程',()=>{
         cy.get('button.mz-btn.btn-success').trigger('click').wait(500);
         cy.contains('修改成功').should('be.visible');
     })
-    it.only('成功修改活动优惠信息',()=>{
+    it('成功修改活动优惠信息',()=>{
         cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
         cy.get('body').then(($body) => {
             const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
@@ -252,5 +252,132 @@ describe('全店满减/包邮主流程',()=>{
         cy.go('back').wait(1000);
         cy.contains('返回活动列表').click();
         cy.url().should('contain','/huodong/list-v2');
+    })
+    it('成功暂停活动',()=>{
+        cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
+        cy.get('body').then(($body) => {
+            const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+            const global_tip1_close = $body.find('button.ant-tour-close:visible');
+            if (global_popwin_close.length !== 0) {
+              cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+            }
+            if (global_tip1_close.length !== 0){
+              cy.wrap(global_tip1_close).click();
+            }
+        });
+        //点击暂停活动按钮后，等待2秒
+        cy.contains('暂停活动').eq(0).click().wait(2000);
+        cy.get('div.activity-body').eq(0).within(()=>{
+            cy.get('a').contains('修改信息').should('not.exist');
+            cy.get('a').contains('修改优惠').should('not.exist');
+            cy.get('a').contains('暂停活动').should('not.exist');
+            cy.get('a').contains('重启活动').should('be.visible');
+            cy.contains('主图水印').should('not.exist');
+          });
+        cy.get('span.activity-status').eq(0).within(()=>{
+            cy.contains('已暂停').should('be.visible');
+          });
+    })
+    it('成功重启活动',()=>{
+        cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
+        cy.get('body').then(($body) => {
+            const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+            const global_tip1_close = $body.find('button.ant-tour-close:visible');
+            if (global_popwin_close.length !== 0) {
+              cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+            }
+            if (global_tip1_close.length !== 0){
+              cy.wrap(global_tip1_close).click();
+            }
+        });
+        //点击重启活动按钮后，等待2秒
+        cy.contains('重启活动').eq(0).click().wait(2000);
+        cy.get('div.activity-body').eq(0).within(()=>{
+            cy.get('a').contains('修改信息').should('be.visible');
+            cy.get('a').contains('修改优惠').should('be.visible');
+            cy.get('a').contains('暂停活动').should('be.visible');
+            cy.get('a').contains('重启活动').should('not.exist');
+            cy.contains('主图水印').should('be.visible');
+        });
+        cy.get('span.activity-status').eq(0).within(()=>{
+            cy.contains('进行中').should('be.visible');
+        });
+    })
+    it('成功结束活动',()=>{
+        cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
+        cy.get('body').then(($body) => {
+            const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+            const global_tip1_close = $body.find('button.ant-tour-close:visible');
+            if (global_popwin_close.length !== 0) {
+              cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+            }
+            if (global_tip1_close.length !== 0){
+              cy.wrap(global_tip1_close).click();
+            }
+        });
+        cy.get('i.icon-shanchu').eq(0).parent().within(()=>{
+          cy.get('i.icon-shanchu').click();
+        });
+        cy.get('button').contains('不结束').click();
+        cy.get('i.icon-shanchu').eq(0).parent().within(()=>{
+          cy.get('i.icon-shanchu').click();
+        });
+        //获取结束活动的接口请求
+        cy.intercept('POST', 'https://meizhe.meideng.net/common/mj/stop').as('endActivityRequest'); 
+        cy.get('button').contains('不结束').next().click();
+        cy.wait('@endActivityRequest').then((interception) => {
+          // 验证请求是否成功
+          expect(interception.response.statusCode).to.eq(200); 
+          expect(interception.response.body).to.have.property('success',1);
+        });
+    })
+    it('成功重开活动',()=>{
+        cy.visit('https://meizhe.meideng.net/huodong/list-stopped-v2').wait(5000);
+        cy.get('body').then(($body) => {
+            const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+            if (global_popwin_close.length !== 0) {
+              cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+            }
+        });
+        cy.get('i.icon-chongkai').eq(0).click();
+        cy.contains('点此完整重开').click();
+        cy.url().should('contain','/huodong/fmjs-restart-act');
+        cy.go('back');
+        cy.get('i.icon-chongkai').eq(0).click();
+        cy.contains('确认重开').click();
+        cy.contains('重开完成').should('be.visible');
+        cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
+        cy.get('body').then(($body) => {
+          const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+          const global_tip1_close = $body.find('button.ant-tour-close:visible');
+          if (global_popwin_close.length !== 0) {
+            cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+          }
+          if (global_tip1_close.length !== 0){
+            cy.wrap(global_tip1_close).click();
+          }
+        });
+        cy.get('i.icon-shanchu').eq(0).parent().within(()=>{
+          cy.get('i.icon-shanchu').click();
+        });
+        cy.get('button').contains('不结束').next().click();
+    })
+    it.only('成功彻底删除折扣活动',()=>{
+        cy.visit('https://meizhe.meideng.net/huodong/list-stopped-v2').wait(2000);
+        cy.get('body').then(($body) => {
+          const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+          if (global_popwin_close.length !== 0) {
+            cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+          }
+        });
+        cy.get('i.icon-yongjiushanchu').eq(0).click();
+        cy.contains('不删除').click();
+        cy.get('i.icon-yongjiushanchu').eq(0).click();
+        cy.intercept('post','https://meizhe.meideng.net/common/mj/hide').as('yongjiushanchu');
+        cy.contains('不删除').next().click();
+        cy.wait('@yongjiushanchu').then((interception)=>{
+          expect(interception.response.statusCode).to.eq(200);
+          expect(interception.response.body).to.have.property('success',1);
+        });
     })
 })
