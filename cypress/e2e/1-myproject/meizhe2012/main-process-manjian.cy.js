@@ -82,12 +82,47 @@ describe('满减/满包邮活动主流程',()=>{
             cy.contains('测试礼物').should('be.visible');
         })
         cy.contains('添加横幅到手机详情页').click();
+        // 移除 target 属性并点击链接
+        cy.get('a').contains('详细说明').parent().invoke('attr','href','https://www.yuque.com/meizhe/iyh31w/ix3i1iml5225vxf1')
+        .invoke('removeAttr', 'target').click();
+        // 验证新页面内容
+        cy.origin('https://www.yuque.com/',()=>{
+            cy.contains('旺铺插件投放下线通知').should('be.visible');
+        });
+        //跳转回原页面
+        cy.origin('https://www.yuque.com/',()=>{
+            cy.go('back');
+        });
+        // 移除 target 属性并点击链接
+        cy.get('a').contains('点击了解详情').parent().invoke('attr','href','https://www.yuque.com/docs/share/2df4745b-4e06-4621-9c66-8bfd3743ce13')
+        .invoke('removeAttr', 'target').click();
+        // 验证新页面内容
+        cy.origin('https://www.yuque.com/',()=>{
+            cy.contains('如何将满减横幅同步到手机详情').should('be.visible');
+        });
+        //跳转回原页面
+        cy.origin('https://www.yuque.com/',()=>{
+            cy.go('back');
+        });
         cy.contains('添加多级优惠').click();
         cy.contains('优惠 2').should('be.visible');
         cy.contains('添加多级优惠').click();
         cy.contains('优惠 3').should('be.visible');
         cy.get("i.icon-close2").click();
         cy.contains('优惠3').should('not.exist');
+        //输入满500元减40元，勾选上不封顶、包邮以及送测试礼物
+        cy.contains('条件2').parent().parent().next().children().eq(1).within(()=>{
+            cy.get('input').eq(1).clear().type('3');
+        });
+        cy.contains('内容2').parent().parent().next().children().then(($neirong2)=>{
+            cy.get($neirong2).eq(1).within(()=>{
+                cy.get('input').eq(1).clear().type('8').wait(500);
+            })
+        });
+        cy.get('@hengfuyulan').within(()=>{
+            cy.contains('3').should('be.visible');
+            cy.contains('8').should('be.visible');
+        })
         cy.get('textarea[placeholder="补充您想让买家了解的其他活动信息"]').click()
         .type('这是测试活动').wait(1000);
         cy.contains('完成并提交').click();
@@ -95,7 +130,7 @@ describe('满减/满包邮活动主流程',()=>{
         cy.contains('查看活动详情').should('be.visible');
         cy.contains('返回活动列表').should('be.visible');
         cy.contains('查看活动详情').click();
-        cy.url().should('contain','/huodong/fmjs-detail-v2');
+        cy.url().should('contain','/huodong/mjs-detail-v2');
         cy.go('back').wait(1000);
         cy.contains('返回活动列表').click();
         cy.url().should('contain','/huodong/list-v2');
