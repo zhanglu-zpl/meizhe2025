@@ -3,7 +3,7 @@ const { defineConfig } = require("cypress");
 module.exports =  defineConfig({
   e2e: {chromeWebSecurity: true,
     env:{
-      session:"e12f313f-2efa-4b6d-9151-ab0168a5ed30",
+      session:"4ee484b3-c88f-45fc-b78b-60981d24cd74",
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here
