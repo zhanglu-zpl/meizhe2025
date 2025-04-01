@@ -309,5 +309,43 @@ describe('满减/满包邮活动主流程',()=>{
             cy.get('input').eq(1).clear().type('600');
             cy.get('input').eq(2).clear().type('10')
         });
+        cy.contains('内容1').parent().parent().next().within(()=>{
+            cy.contains('上不封顶').should('not.exist');
+        });
+        cy.contains('内容1').parent().parent().next().children().then(($neirong1)=>{
+            cy.get($neirong1).eq(0).within(()=>{
+                cy.get('input').eq(1).clear().type('44').wait(500);
+            })
+        });
+        cy.contains('送礼物').next().as('giftsrk');
+        cy.get('@giftsrk').within(()=>{
+            cy.get('input').click().clear().type('测试礼物修改');
+        })
+        cy.contains('节日红').click();
+        cy.contains('不显示横幅').parent().parent().parent().parent().next().as('hengfuyulan');
+        cy.get('@hengfuyulan').within(()=>{
+            cy.contains('600').should('be.visible');
+            cy.contains('元且满').should('be.visible');
+            cy.contains('10').should('be.visible');
+            cy.contains('测试礼物修改').should('be.visible');
+        })
+        cy.contains('完成修改并提交').click();
+        cy.get('div.mzc-column-container').contains('该功能为尊享版可用，您当前为旗舰版，请切换活动类型')
+        .should('be.visible')
+        cy.get('div.mzc-column-container').contains('该功能为尊享版可用，您当前为旗舰版，请切换活动类型')
+        .parent().parent().as('sjtc')
+        cy.get('@sjtc').within(()=>{
+            cy.contains('选择尊享版').click();
+        })
+        cy.contains('已成功切换').should('be.visible');
+        cy.contains('完成修改并提交').click();
+        cy.contains('活动修改成功').should('be.visible');
+        cy.contains('查看活动详情').should('be.visible');
+        cy.contains('返回活动列表').should('be.visible');
+        cy.contains('查看活动详情').click();
+        cy.url().should('contain','/huodong/mjs-detail-v2');
+        cy.go('back').wait(1000);
+        cy.contains('返回活动列表').click();
+        cy.url().should('contain','/huodong/list-v2');
     })
 })
