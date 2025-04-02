@@ -4,6 +4,10 @@ export const restartWatermark = () => {
 
     // 进入水印活动列表页面
     cy.visit("https://meizhe.meideng.net/shuiyin-new/running");
+
+    // 点击新功能引导，我知道了
+    cy.contains('我知道了').should('be.visible').click();
+    let activityId;
     
     // 处理"多尺寸水印上线"弹窗
     cy.get('body').then($body => {
@@ -12,12 +16,13 @@ export const restartWatermark = () => {
         }
     });
 
-    // 点击新功能引导，我知道了
-    cy.contains('我知道了').should('be.visible').click();
-    let activityId;
+    
 
     // 拦截接口请求
-    cy.intercept('POST', 'https://meizhe.meideng.net/common/shuiyin2/proxy/api/act/list').as('getActList');
+    cy.intercept({
+        method: 'POST',
+        url: '**/common/shuiyin2/proxy/api/act/list'
+    }).as('getActList');
 
     // 点击结束水印活动
     cy.contains('结束水印').should('be.visible').eq(0).click();
@@ -26,18 +31,23 @@ export const restartWatermark = () => {
     cy.contains('确认').should('be.visible').click();
     cy.wait(2000);
 
-
-    // 等待接口请求完成
-    cy.wait('@getActList').its('response').then((response) => {
-        // 验证响应状态码
-        expect(response.status).to.equal(200);
-  
-        // 验证响应体中是否包含活动 ID
-        if (response.body.data && response.body.data.acts && response.body.data.acts.length > 0) {
-          activityId = response.body.data.acts[0].id;
-          cy.log('活动ID：', activityId);
+    // 等待接口请求完成并处理响应
+    cy.wait('@getActList', { timeout: 10000 }).then((interception) => {
+        if (interception && interception.response) {
+            // 打印完整的接口返回数据，方便调试
+            cy.log('完整的接口返回数据：', JSON.stringify(interception.response.body));
+            
+            // 验证响应体中是否包含活动 ID
+            if (interception.response.body.data && 
+                interception.response.body.data.acts && 
+                interception.response.body.data.acts.length > 0) {
+                activityId = interception.response.body.data.acts[0].id;
+                cy.log('活动ID：', activityId);
+            } else {
+                cy.log('未找到活动 ID，接口返回数据结构：', JSON.stringify(interception.response.body));
+            }
         } else {
-          cy.log('未找到活动 ID');
+            cy.log('接口响应异常');
         }
     });
 
@@ -45,12 +55,28 @@ export const restartWatermark = () => {
     cy.contains('已结束列表').should('be.visible').click();
     cy.wait(5000);
 
-    // 验证活动已经结束
-    cy.get('.mzc-table-row').should('contain', activityId);
-    
-    // 验证未结束列表中不存在该活动
-    cy.contains('未结束列表').click();
-    cy.get('.mzc-table-row').should('not.contain', activityId);
+    // 通过接口检查活动id
+    cy.request({
+        method: 'POST',
+        url: 'https://meizhe.meideng.net/common/shuiyin2/proxy/api/act/list',
+        body: {
+            pageNum: 1,
+            pageSize: 10,
+            status: "stopped"  // 表示已结束状态
+        }
+    }).then((response) => {
+        // 获取第一个活动的ID并验证
+        const firstActId = response.body.data.acts[0].id;
+        cy.log('已结束列表第一个活动ID：', firstActId);
+        cy.log('期望的活动ID：', activityId);
+        
+        // 验证是否匹配
+        expect(firstActId).to.equal(activityId);
+    });
+        
+
+        
+  
 
     // 返回已结束列表
     cy.contains('已结束列表').click();

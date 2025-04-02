@@ -1,4 +1,4 @@
-export const create23Watermark = () => {
+export const create112334Watermark = () => {
     // 创建水印活动
     cy.contains('主图水印').should('be.visible').click();
     cy.wait(7000);

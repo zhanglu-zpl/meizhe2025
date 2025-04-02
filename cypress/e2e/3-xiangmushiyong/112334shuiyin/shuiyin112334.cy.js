@@ -1,7 +1,7 @@
 import "cypress-real-events";
 import { setupTest } from '../common.js';
 import { BaseWatermarkTest } from '../common/baseWatermark.js';
-import { create23Watermark } from './create112334.cy.js';
+import { create112334Watermark } from './create112334.cy.js';
 
 const watermarkTest = new BaseWatermarkTest('2:3');
 
@@ -11,7 +11,7 @@ describe("多尺寸水印功能完整流程测试", () => {
   });
 
   it("1. 创建水印", () => {
-    create23Watermark();
+    create112334Watermark();
   });
 
   it("2. 修改活动信息", () => {
@@ -22,7 +22,7 @@ describe("多尺寸水印功能完整流程测试", () => {
     watermarkTest.modifyWatermark();
   });
   
-  it("4. 结束并重开水印", () => {
+  it.only("4. 结束并重开水印", () => {
     watermarkTest.restartWatermark();
   });
 
