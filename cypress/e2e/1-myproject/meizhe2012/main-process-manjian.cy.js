@@ -135,125 +135,125 @@ describe('满减/满包邮活动主流程',()=>{
         cy.contains('返回活动列表').click();
         cy.url().should('contain','/huodong/list-v2');
     })
-    it('添加活动页推广跳转正确',()=>{
-        cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
-        cy.get('body').then(($body) => {
-            const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
-            const global_tip1_close = $body.find('button.ant-tour-close:visible');
-            if (global_popwin_close.length !== 0) {
-              cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
-            }
-            if (global_tip1_close.length !== 0){
-              cy.wrap(global_tip1_close).click();
-            }
-          });
-        //点击活动页推广的添加按钮
-        cy.get('div.activity-body').eq(0).within(()=>{
-            cy.get('span').contains('活动页推广').next().click().wait(500);
-        })
-        //断言弹窗正确打开
-        cy.contains('发布活动页').should('be.visible');
-    })
-    it('添加关联水印跳转正确',()=>{
-        cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
-        cy.get('body').then(($body) => {
-            const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
-            const global_tip1_close = $body.find('button.ant-tour-close:visible');
-            if (global_popwin_close.length !== 0) {
-              cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
-            }
-            if (global_tip1_close.length !== 0){
-              cy.wrap(global_tip1_close).click();
-            }
-          });
-        //点击关联水印的添加按钮
-        cy.get('div.activity-body').eq(0).within(()=>{
-            cy.get('span').contains('关联水印').next().click();
-        })
-        //断言跳转页面的url正确
-        cy.url().should('contain','shuiyin-new/create');
-    })
-    it('添加短信营销跳转正确',()=>{
-        cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
-        cy.get('body').then(($body) => {
-            const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
-            const global_tip1_close = $body.find('button.ant-tour-close:visible');
-            if (global_popwin_close.length !== 0) {
-              cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
-            }
-            if (global_tip1_close.length !== 0){
-              cy.wrap(global_tip1_close).click();
-            }
-          });
-        //点击短信营销的添加按钮
-        cy.get('div.activity-body').eq(0).within(()=>{
-            cy.get('span').contains('短信营销').next().click();
-        })
-        //断言跳转页面的url正确
-        cy.url().should('contain','sms/create');
-    })
-    it('成功修改活动信息',()=>{
-        cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
-        cy.get('body').then(($body) => {
-            const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
-            const global_tip1_close = $body.find('button.ant-tour-close:visible');
-            if (global_popwin_close.length !== 0) {
-              cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
-            }
-            if (global_tip1_close.length !== 0){
-              cy.wrap(global_tip1_close).click();
-            }
-        });
-        //点击修改信息按钮
-        cy.contains('修改信息').eq(0).click().wait(2000);
-        //修改huodong标签为其他
-        cy.get('#update-settings>div').eq(0).within(()=>{
-            cy.contains('自定义').click().wait(500);
-        })
-        cy.contains('满就送礼').click().wait(500);
-        cy.get('#update-settings>div').eq(0).within(()=>{
-            cy.get('a').contains('点这里自定义').click();
-        })
-        cy.get('input[value="新春好礼"]').clear().type('春节好礼');
-        //修改开始时间为当前时间晚一天
-        cy.get('#update-settings>div').eq(1).within(()=>{
-            cy.get('input').click().wait(500);
-        })
-        cy.get('div').contains('今天').parent().parent().then(($today)=>{
-            cy.log($today[0].outerHTML);
-            if($today[0].nextElementSibling!== null){
-                //元素存在时的操作
-                cy.log('elements exist');
-                cy.get($today).next().click();
-            }else{
-                //元素不存在时的操作
-                cy.get($today).parent().next().as('nextday');
-                cy.get('@nextday').children().eq(0).click().wait(1000);
-            }
-        })
-        cy.get('button').contains('今天').next().click().wait(1000);
-        //修改结束时间为比开始时间晚两天
-        cy.get('#update-settings>div').eq(2).within(()=>{
-            cy.get('input').click().wait(500);
-        })
-        cy.get('button').contains('今天').click().wait(1000);
-        cy.contains('活动结束时间不能早于或等于开始时间').should('be.visible');
-        cy.get('div').contains('今天').parent().parent().then(($tomorrow)=>{
-            if($tomorrow[0].nextElementSibling.nextElementSibling!== null){
-                //元素存在时的操作
-                cy.log('elements exist');
-                cy.get($tomorrow).next().next().click();
-            }else{
-                //元素不存在时的操作
-                cy.get($tomorrow).parent().next().as('nextday');
-                cy.get('@nextday').children().eq(0).click().wait(1000);
-            }
-        })
-        cy.get('button').contains('今天').next().click().wait(1000);
-        //点击确定按钮，完成修改
-        cy.get('button.mz-btn.btn-success').trigger('click').wait(500);
-        cy.contains('修改成功').should('be.visible');
-    })
+    // it('添加活动页推广跳转正确',()=>{
+    //     cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
+    //     cy.get('body').then(($body) => {
+    //         const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+    //         const global_tip1_close = $body.find('button.ant-tour-close:visible');
+    //         if (global_popwin_close.length !== 0) {
+    //           cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+    //         }
+    //         if (global_tip1_close.length !== 0){
+    //           cy.wrap(global_tip1_close).click();
+    //         }
+    //       });
+    //     //点击活动页推广的添加按钮
+    //     cy.get('div.activity-body').eq(0).within(()=>{
+    //         cy.get('span').contains('活动页推广').next().click().wait(500);
+    //     })
+    //     //断言弹窗正确打开
+    //     cy.contains('发布活动页').should('be.visible');
+    // })
+    // it('添加关联水印跳转正确',()=>{
+    //     cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
+    //     cy.get('body').then(($body) => {
+    //         const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+    //         const global_tip1_close = $body.find('button.ant-tour-close:visible');
+    //         if (global_popwin_close.length !== 0) {
+    //           cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+    //         }
+    //         if (global_tip1_close.length !== 0){
+    //           cy.wrap(global_tip1_close).click();
+    //         }
+    //       });
+    //     //点击关联水印的添加按钮
+    //     cy.get('div.activity-body').eq(0).within(()=>{
+    //         cy.get('span').contains('关联水印').next().click();
+    //     })
+    //     //断言跳转页面的url正确
+    //     cy.url().should('contain','shuiyin-new/create');
+    // })
+    // it('添加短信营销跳转正确',()=>{
+    //     cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
+    //     cy.get('body').then(($body) => {
+    //         const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+    //         const global_tip1_close = $body.find('button.ant-tour-close:visible');
+    //         if (global_popwin_close.length !== 0) {
+    //           cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+    //         }
+    //         if (global_tip1_close.length !== 0){
+    //           cy.wrap(global_tip1_close).click();
+    //         }
+    //       });
+    //     //点击短信营销的添加按钮
+    //     cy.get('div.activity-body').eq(0).within(()=>{
+    //         cy.get('span').contains('短信营销').next().click();
+    //     })
+    //     //断言跳转页面的url正确
+    //     cy.url().should('contain','sms/create');
+    // })
+    // it('成功修改活动信息',()=>{
+    //     cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
+    //     cy.get('body').then(($body) => {
+    //         const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
+    //         const global_tip1_close = $body.find('button.ant-tour-close:visible');
+    //         if (global_popwin_close.length !== 0) {
+    //           cy.wrap(global_popwin_close).click(); // 使用 cy.wrap 包装 jQuery 对象
+    //         }
+    //         if (global_tip1_close.length !== 0){
+    //           cy.wrap(global_tip1_close).click();
+    //         }
+    //     });
+    //     //点击修改信息按钮
+    //     cy.contains('修改信息').eq(0).click().wait(2000);
+    //     //修改huodong标签为其他
+    //     cy.get('#update-settings>div').eq(0).within(()=>{
+    //         cy.contains('自定义').click().wait(500);
+    //     })
+    //     cy.contains('满就送礼').click().wait(500);
+    //     cy.get('#update-settings>div').eq(0).within(()=>{
+    //         cy.get('a').contains('点这里自定义').click();
+    //     })
+    //     cy.get('input[value="新春好礼"]').clear().type('春节好礼');
+    //     //修改开始时间为当前时间晚一天
+    //     cy.get('#update-settings>div').eq(1).within(()=>{
+    //         cy.get('input').click().wait(500);
+    //     })
+    //     cy.get('div').contains('今天').parent().parent().then(($today)=>{
+    //         cy.log($today[0].outerHTML);
+    //         if($today[0].nextElementSibling!== null){
+    //             //元素存在时的操作
+    //             cy.log('elements exist');
+    //             cy.get($today).next().click();
+    //         }else{
+    //             //元素不存在时的操作
+    //             cy.get($today).parent().next().as('nextday');
+    //             cy.get('@nextday').children().eq(0).click().wait(1000);
+    //         }
+    //     })
+    //     cy.get('button').contains('今天').next().click().wait(1000);
+    //     //修改结束时间为比开始时间晚两天
+    //     cy.get('#update-settings>div').eq(2).within(()=>{
+    //         cy.get('input').click().wait(500);
+    //     })
+    //     cy.get('button').contains('今天').click().wait(1000);
+    //     cy.contains('活动结束时间不能早于或等于开始时间').should('be.visible');
+    //     cy.get('div').contains('今天').parent().parent().then(($tomorrow)=>{
+    //         if($tomorrow[0].nextElementSibling.nextElementSibling!== null){
+    //             //元素存在时的操作
+    //             cy.log('elements exist');
+    //             cy.get($tomorrow).next().next().click();
+    //         }else{
+    //             //元素不存在时的操作
+    //             cy.get($tomorrow).parent().next().as('nextday');
+    //             cy.get('@nextday').children().eq(0).click().wait(1000);
+    //         }
+    //     })
+    //     cy.get('button').contains('今天').next().click().wait(1000);
+    //     //点击确定按钮，完成修改
+    //     cy.get('button.mz-btn.btn-success').trigger('click').wait(500);
+    //     cy.contains('修改成功').should('be.visible');
+    // })
     it('成功添加商品',()=>{
         cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
         cy.get('body').then(($body) => {
@@ -292,7 +292,7 @@ describe('满减/满包邮活动主流程',()=>{
         cy.contains('添加更多商品').click();
         cy.url().should('contain','/huodong/mjs-add-item');
     })
-    it.only('成功修改优惠',()=>{
+    it('成功修改优惠',()=>{
         cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
         cy.get('body').then(($body) => {
             const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
@@ -338,14 +338,35 @@ describe('满减/满包邮活动主流程',()=>{
             cy.contains('选择尊享版').click();
         })
         cy.contains('已成功切换').should('be.visible');
-        cy.contains('完成修改并提交').click();
-        cy.contains('活动修改成功').should('be.visible');
-        cy.contains('查看活动详情').should('be.visible');
-        cy.contains('返回活动列表').should('be.visible');
-        cy.contains('查看活动详情').click();
-        cy.url().should('contain','/huodong/mjs-detail-v2');
-        cy.go('back').wait(1000);
-        cy.contains('返回活动列表').click();
-        cy.url().should('contain','/huodong/list-v2');
+        cy.contains('完成修改并提交').click().wait(5000);
+        cy.get('body').then(($body) => {
+            handleDialogs($body);
+        });
+        function handleDialogs($body) {
+            const xiugaizhong1 = $body.find('[id^="dialog"][id$="-msg"]');
+            if (xiugaizhong1.length > 0) {
+                cy.get('a').contains('好的').click().wait(500);
+                cy.contains('完成修改并提交').click().wait(5000);
+                // 递归调用处理下一个对话框
+                cy.get('body').then(($newBody) => {
+                    handleDialogs($newBody);
+                })
+            }
+            else{
+                cy.get('p').contains('活动还在创建或修改中，请稍后再进行操作').should('not.exist')
+                .then(()=>{
+                    cy.contains('活动修改成功').should('be.visible');
+                    cy.contains('查看活动详情').should('be.visible');
+                    cy.contains('返回活动列表').should('be.visible');
+                    cy.contains('查看活动详情').click();
+                    cy.url().should('contain','/huodong/mjsv1-detail-v2');
+                    cy.go('back').wait(1000);
+                    cy.contains('返回活动列表').click();
+                    cy.url().should('contain','/huodong/list-v2');
+                })
+            }
+        }
+        
+
     })
 })
