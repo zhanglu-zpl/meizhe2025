@@ -55,32 +55,6 @@ export const restartWatermark = () => {
     cy.contains('已结束列表').should('be.visible').click();
     cy.wait(5000);
 
-    // 通过接口检查活动id
-    cy.request({
-        method: 'POST',
-        url: 'https://meizhe.meideng.net/common/shuiyin2/proxy/api/act/list',
-        body: {
-            pageNum: 1,
-            pageSize: 10,
-            status: "stopped"  // 表示已结束状态
-        }
-    }).then((response) => {
-        // 获取第一个活动的ID并验证
-        const firstActId = response.body.data.acts[0].id;
-        cy.log('已结束列表第一个活动ID：', firstActId);
-        cy.log('期望的活动ID：', activityId);
-        
-        // 验证是否匹配
-        expect(firstActId).to.equal(activityId);
-    });
-        
-
-        
-  
-
-    // 返回已结束列表
-    cy.contains('已结束列表').click();
-    cy.wait(2000);
 
     // 点击重开按钮
     cy.contains('重开水印').should('be.visible').eq(0).click();
@@ -99,4 +73,26 @@ export const restartWatermark = () => {
 
     // 提示发布成功点击查看任务详情
     cy.contains('查看任务详情').should('be.visible').click(); 
+
+    // 进入未结束列表
+    cy.contains('未结束列表').should('be.visible').click();
+
+    // 检测重开活动是不是之前结束的活动
+    cy.request({
+        method: 'POST',
+        url: 'https://meizhe.meideng.net/common/shuiyin2/proxy/api/act/list',
+        body: {
+            pageNum: 1,
+            pageSize: 10,
+            status: "running"  // 运行中的活动
+        }
+    }).then((response) => {
+        // 获取第一个活动的ID并验证
+        const firstActId = response.body.data.acts[0].id;
+        cy.log('未结束列表第一个活动ID：', firstActId);
+        cy.log('原活动ID：', activityId);
+        
+        // 验证是否匹配
+        expect(firstActId).to.equal(activityId);
+    });
 };
