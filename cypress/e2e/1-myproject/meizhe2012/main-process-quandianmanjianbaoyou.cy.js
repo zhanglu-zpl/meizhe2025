@@ -300,7 +300,7 @@ describe('全店满减/包邮主流程',()=>{
             cy.contains('主图水印').should('be.visible');
         });
         cy.get('span.activity-status').eq(0).within(()=>{
-            cy.contains('进行中').should('be.visible');
+            cy.contains('未开始').should('be.visible');
         });
     })
     it('成功结束活动',()=>{

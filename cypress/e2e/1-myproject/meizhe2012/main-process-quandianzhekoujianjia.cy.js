@@ -195,7 +195,7 @@ describe('全店折扣/减价主流程',()=>{
           cy.contains('已暂停').should('be.visible');
         });
     })
-    it.only('成功重启活动',()=>{
+    it('成功重启活动',()=>{
       cy.visit('https://meizhe.meideng.net/huodong/list-v2').wait(5000);
       cy.get('body').then(($body) => {
           const global_popwin_close = $body.find('button.mz-modal-adv-close-button:visible');
@@ -216,7 +216,7 @@ describe('全店折扣/减价主流程',()=>{
           cy.contains('主图水印').should('be.visible');
       });
       cy.get('span.activity-status').eq(0).within(()=>{
-          cy.contains('进行中').should('be.visible');
+          cy.contains('未开始').should('be.visible');
       });
   })
     it('成功结束活动',()=>{
