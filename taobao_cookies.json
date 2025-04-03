@@ -1,0 +1,149 @@
+[
+  {
+    "name": "mtop_partitioned_detect",
+    "value": "1",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1738901794.657029,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "_m_h5_tk",
+    "value": "72112472076f08ff01a7c1f9493a68a9_1738906479018",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1738901794.657204,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "_m_h5_tk_enc",
+    "value": "b215c6ba3267cd42a1e2bb41e51b1fd5",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1738901794.65726,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "xlly_s",
+    "value": "1",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1739158062,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "3PcFlag",
+    "value": "1738898865955",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1739791665,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "t",
+    "value": "70905151ec9f72c990f02991718f4413",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1746703660.942229,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "arms_uid",
+    "value": "6d2cea21-8c01-4344-b9ec-4d551eb1f9e7",
+    "path": "/",
+    "secure": true,
+    "hostOnly": true,
+    "httpOnly": false,
+    "expiry": 1750735520.27328,
+    "domain": "login.taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "arms_uid",
+    "value": "c3a4b564-a9b2-4a6e-b90d-6bad76d73b9c",
+    "path": "/",
+    "secure": true,
+    "hostOnly": true,
+    "httpOnly": false,
+    "expiry": 1751187352.552778,
+    "domain": "login.taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "tfstk",
+    "value": "gQ_nFU0S1M-QqXBxpO8QccdJDDr9AXTWdT3JeUpzbdJ6ypQdvgjGGTvLNkTdjLXNIp-LO6Kor_v6ypQdvgjGK9uJvTQlf4ffNwFByWTCOUTzH-Uvr61BPPjHqDbn71R5_BoyYlLwBnKPu-UYk6ruJsaQHwFGzivBaURe4HuasIdWzQoFUd-wgInyzUWzshRDNXoyLUow_I9wUU-PU1PMwbrjYKQP0NyiliEv0CdfSBxH31qxJ2_okH9VTdc8DNA3NK5eI4uJplW4-1fLKq19RZBDM9UZ-tfPGg-GrAyDFNfN8g5sK8R149LwpErEseQCTi-Pu8iPneXk0w-ia7fdTpYM_ZP-cdQMpT7HbS3D2F7v0eSTfJKJ-IXPR9cozt5OMwt1r-DwFMdX7Qb7g0vk4gktbmJFUCRawNmSVHR6sK_0S29U2Lsw-5ViD_te1I9Ys5mSVHR6GKFgsmQWYCOXH",
+    "path": "/",
+    "secure": false,
+    "httpOnly": false,
+    "expiry": 1754450861,
+    "domain": ".taobao.com"
+  },
+  {
+    "name": "_uab_collina",
+    "value": "173889886180129216531747",
+    "path": "/member",
+    "secure": false,
+    "hostOnly": true,
+    "httpOnly": false,
+    "expiry": 1773458861.802371,
+    "domain": "login.taobao.com"
+  },
+  {
+    "name": "cna",
+    "value": "W2QsIHC70HgCATyj/tTKSZjf",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "expiry": 1773458862.529584,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "XSRF-TOKEN",
+    "value": "116686c2-ec08-4fb5-a930-d5c996546a49",
+    "path": "/",
+    "secure": false,
+    "hostOnly": true,
+    "httpOnly": true,
+    "domain": "login.taobao.com"
+  },
+  {
+    "name": "_samesite_flag_",
+    "value": "true",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "cookie2",
+    "value": "1480968c2a63a184cfc3e1420f084e27",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  },
+  {
+    "name": "_tb_token_",
+    "value": "e35d953eb3638",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "domain": ".taobao.com",
+    "sameSite": "no_restriction"
+  }
+]
