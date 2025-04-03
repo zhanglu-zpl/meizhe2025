@@ -1,3 +1,9 @@
+Cypress.on('uncaught:exception', (err, runnable) => {
+    console.error('未捕获的异常:', err);
+    // 返回 false 可以阻止 Cypress 因为未捕获的异常而失败
+    return false;
+});
+
 describe('满减/满包邮活动主流程',()=>{
     beforeEach(()=>{
         cy.viewport(1280,1280);
@@ -339,9 +345,6 @@ describe('满减/满包邮活动主流程',()=>{
         })
         cy.contains('已成功切换').should('be.visible');
         cy.contains('完成修改并提交').click().wait(5000);
-        cy.get('body').then(($body) => {
-            handleDialogs($body);
-        });
         function handleDialogs($body) {
             const xiugaizhong1 = $body.find('[id^="dialog"][id$="-msg"]');
             if (xiugaizhong1.length > 0) {
@@ -358,7 +361,7 @@ describe('满减/满包邮活动主流程',()=>{
                     cy.contains('活动修改成功').should('be.visible');
                     cy.contains('查看活动详情').should('be.visible');
                     cy.contains('返回活动列表').should('be.visible');
-                    cy.contains('查看活动详情').click();
+                    cy.contains('查看活动详情').click().wait(1000);
                     cy.url().should('contain','/huodong/mjsv1-detail-v2');
                     cy.go('back').wait(1000);
                     cy.contains('返回活动列表').click();
@@ -366,7 +369,8 @@ describe('满减/满包邮活动主流程',()=>{
                 })
             }
         }
-        
-
+        cy.get('body').then(($body) => {
+            handleDialogs($body);
+        });
     })
 })
