@@ -1,9 +1,19 @@
 const { defineConfig } = require("cypress");
 
 module.exports =  defineConfig({
-  e2e: {chromeWebSecurity: true,
+  reporter: 'mochawesome',
+  reporterOptions: {
+    reportDir: 'cypress/reports/mochawesome',
+    overwrite: false,
+    html: false,
+    json: true
+  },
+  
+  e2e: {
+    chromeWebSecurity: true,
+    specPattern: 'cypress/e2e/1-myproject/meizhe2012/*.cy.{js,jsx,ts,tsx}',
     env:{
-      session:"d6e67b48-33f6-412c-835c-7f4855fb52fb",
+      session:"a4f93dc7-9ee7-4c4b-8ce6-f6ca26819515",
     },
     setupNodeEvents(on, config) {
       // implement node event listeners here

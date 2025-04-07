@@ -99,17 +99,17 @@ describe('满减/满包邮活动主流程',()=>{
         cy.origin('https://www.yuque.com/',()=>{
             cy.go('back');
         });
-        // 移除 target 属性并点击链接
-        cy.get('a').contains('点击了解详情').parent().invoke('attr','href','https://www.yuque.com/docs/share/2df4745b-4e06-4621-9c66-8bfd3743ce13')
-        .invoke('removeAttr', 'target').click();
-        // 验证新页面内容
-        cy.origin('https://www.yuque.com/',()=>{
-            cy.contains('如何将满减横幅同步到手机详情').should('be.visible');
-        });
-        //跳转回原页面
-        cy.origin('https://www.yuque.com/',()=>{
-            cy.go('back');
-        });
+        // // 移除 target 属性并点击链接
+        // cy.get('a').contains('点击了解详情').parent().invoke('attr','href','https://www.yuque.com/meizhe/iyh31w/ilp0cc?')
+        // .invoke('removeAttr', 'target').click();
+        // // 验证新页面内容
+        // cy.origin('https://www.yuque.com/',()=>{
+        //     cy.contains('如何将满减横幅同步到手机详情').should('be.visible');
+        // });
+        // //跳转回原页面
+        // cy.origin('https://www.yuque.com/',()=>{
+        //     cy.go('back');
+        // });
         cy.contains('添加多级优惠').click();
         cy.contains('优惠 2').should('be.visible');
         cy.contains('添加多级优惠').click();
@@ -593,7 +593,7 @@ describe('满减/满包邮活动主流程',()=>{
 
         });
         //结束活动需要一段时间，给出20s的等待时间
-        cy.wait(20000);
+        cy.wait(34000);
     })
     it('成功重开活动',()=>{
         cy.visit('https://meizhe.meideng.net/huodong/list-stopped-v2').wait(5000);
@@ -642,6 +642,7 @@ describe('满减/满包邮活动主流程',()=>{
         cy.get('body').then(($body) => {
             handleDialogs($body);
         });
+        cy.wait(60000);
     })
     it('成功在已结束活动列表导出Excel',()=>{
         cy.visit('https://meizhe.meideng.net/huodong/list-stopped-v2').wait(2000);

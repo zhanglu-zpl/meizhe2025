@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-04-03T11:42:39.093Z",
+    "end": "2025-04-03T11:42:49.905Z",
+    "duration": 10812,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "22ff88b3-05d8-4dd2-960c-f591ba5de313",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-myproject\\meizhe2012\\iframe.cy.js",
+      "file": "cypress\\e2e\\1-myproject\\meizhe2012\\iframe.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e1965706-333d-4cb2-a73b-b092e9013c70",
+          "title": "登录美折",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "处理单层iframe",
+              "fullTitle": "登录美折 处理单层iframe",
+              "timedOut": null,
+              "duration": 7442,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.origin('https://oauth.taobao.com/authorize', () => {\n  // const dom = document.querySelector(\"#fm-login-id\")\n  // console.log(dom);\n  cy.get('iframe#J_loginIframe').then($iframe => {\n    cy.wrap($iframe.contents().find('#fm-login-id')).then($user => {\n      cy.wrap($user).type('杭州美登科技');\n    });\n  });\n});",
+              "err": {
+                "message": "SecurityError: Blocked a frame with origin \"https://oauth.taobao.com\" from accessing a cross-origin frame.",
+                "estack": "SecurityError: Blocked a frame with origin \"https://oauth.taobao.com\" from accessing a cross-origin frame.\n    at Context.eval (webpack:///./cypress/e2e/1-myproject/meizhe2012/iframe.cy.js:11:11)",
+                "diff": null
+              },
+              "uuid": "4a342659-720f-41fa-b903-024369b7c2f4",
+              "parentUUID": "e1965706-333d-4cb2-a73b-b092e9013c70",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "4a342659-720f-41fa-b903-024369b7c2f4"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 7442,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
