@@ -22,7 +22,7 @@ describe("多尺寸水印功能完整流程测试", () => {
     watermarkTest.modifyWatermark();
   });
   
-  it.only("4. 结束并重开水印", () => {
+  it("4. 结束并重开水印", () => {
     watermarkTest.restartWatermark();
   });
 
