@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-04-03T11:30:59.624Z",
+    "end": "2025-04-03T11:31:07.793Z",
+    "duration": 8169,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "861fea37-5b7d-420c-bc12-883fe59d9705",
+      "title": "",
+      "fullFile": "cypress\\e2e\\1-myproject\\meizhe2012\\login.cy.js",
+      "file": "cypress\\e2e\\1-myproject\\meizhe2012\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "279d0e5e-36ea-4b37-9dec-7b51bc66ea51",
+          "title": "登录美折",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "登录成功",
+              "fullTitle": "登录美折 登录成功",
+              "timedOut": null,
+              "duration": 5356,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "//检查页面上是否有\"立即使用美折\"按钮并点击\ncy.contains('立即使用美折').click();\n//输入账号以及密码\ncy.origin('https://oauth.taobao.com', () => {\n  cy.get('账号名/邮箱/手机号').click().type('杭州美登科技');\n  cy.get('请输入登录密码').click().type('hzmd11496');\n});\n// cy.origin('https://oauth.taobao.com', () => {\n//     it('处理单层iframe',function(){\n//         cy.get('iframe#J_loginIframe').then($iframe=>{\n//             cy.wrap($iframe.contents().find('#fm-login-id')).then($user=>{\n//                 cy.wrap($user).type('杭州美登科技')\n//             })\n//         })\n//     })\n//cy.get(\"#fm-login-id\").type('杭州美登科技', { delay: 100 })",
+              "err": {
+                "message": "Error: Syntax error, unrecognized expression: 账号名/邮箱/手机号",
+                "estack": "Error: Syntax error, unrecognized expression: 账号名/邮箱/手机号\n    at Context.eval (webpack:///./cypress/e2e/1-myproject/meizhe2012/login.cy.js:15:11)",
+                "diff": null
+              },
+              "uuid": "ed8a183f-77f0-4ecb-b35c-540d81ffa127",
+              "parentUUID": "279d0e5e-36ea-4b37-9dec-7b51bc66ea51",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "ed8a183f-77f0-4ecb-b35c-540d81ffa127"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 5356,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports/mochawesome",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
