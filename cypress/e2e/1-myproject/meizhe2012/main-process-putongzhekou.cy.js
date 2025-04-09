@@ -517,5 +517,5 @@ describe('普通折扣主流程', () =>{
           expect(interception.response.statusCode).to.eq(200);
           expect(interception.response.body).to.have.property('success',1);
         });
-    })
+    })//测试git
 })
