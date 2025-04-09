@@ -1,24 +1,12 @@
 {
-<<<<<<< HEAD
   "name": "meizhe2025",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open": "cypress open"
-  },
-  "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "cypress": "^14.1.0"
-=======
   "devDependencies": {
     "cypress": "^13.17.0",
     "cypress-iframe": "^1.0.1",
     "mochawesome": "^7.1.3",
     "mochawesome-merge": "^5.0.0",
     "mochawesome-report-generator": "^6.2.0"
->>>>>>> minemeizhe/main
   }
 }
