@@ -1,6 +1,6 @@
 export const addproducts = () => {
 
-    cy.wait(8000);
+    cy.wait(18000);
     // 添加商品
     // 确认当前所在页面是水印活动列表页面
     cy.visit("https://meizhe.meideng.net/shuiyin-new/running");

@@ -1,6 +1,6 @@
 export const modifyWatermark = () => {
 
-      cy.wait(8000);
+      cy.wait(18000);
 
       // "修改1:1水印活动" 
       //进入水印活动列表页面

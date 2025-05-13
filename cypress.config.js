@@ -1,4 +1,5 @@
 const { defineConfig } = require("cypress");
+const { generateReport } = require('./generate-report');
 
 module.exports = defineConfig({
   reporter: 'mochawesome',
@@ -26,6 +27,13 @@ module.exports = defineConfig({
           options.preferences['browser.download.dir'] = 'cypress/downloads';
           options.preferences['browser.download.folderList'] = 2;
           return options;
+        }
+      });
+
+      // 修改测试完成后的回调
+      on('after:run', async (results) => {
+        if (results && results.totalTests > 0) {  // 确保有测试运行完成
+          await generateReport();
         }
       });
     },

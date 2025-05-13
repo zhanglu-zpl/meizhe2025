@@ -1,6 +1,6 @@
 export const restartWatermark = () => {
     // 结束活动/重开活动
-    cy.wait(8000);
+    cy.wait(18000);
 
     // 进入水印活动列表页面
     cy.visit("https://meizhe.meideng.net/shuiyin-new/running");
@@ -53,7 +53,7 @@ export const restartWatermark = () => {
 
     // 进入已结束活动列表
     cy.contains('已结束列表').should('be.visible').click();
-    cy.wait(5000);
+    cy.wait(15000);
 
 
     // 点击重开按钮

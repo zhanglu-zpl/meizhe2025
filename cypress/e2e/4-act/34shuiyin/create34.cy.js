@@ -6,8 +6,7 @@ export const create34Watermark = () => {
     cy.contains('主图水印').should('be.visible').click();
     cy.wait(7000);
 
-    // 等待页面跳转跳到指定 URL
-    cy.url().should('include', 'shuiyin-new/template');
+    
 
       // 处理"多尺寸水印上线"弹窗
       cy.get('body').then($body => {
@@ -15,6 +14,9 @@ export const create34Watermark = () => {
             cy.contains('我知道了').click();
         }
     });
+    
+    // 等待页面跳转跳到指定 URL
+    cy.url().should('include', 'shuiyin-new/template');
     
     // 检查是否进入主图水印并点击高级版
     cy.contains('高级版').should('be.visible').click();
