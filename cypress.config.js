@@ -1,16 +1,10 @@
 const { defineConfig } = require("cypress");
-const { generateReport } = require('./generate-report');
+const allureWriter = require('@shelex/cypress-allure-plugin/writer');
 
 module.exports = defineConfig({
-  reporter: 'mochawesome',
-  reporterOptions: {
-    reportDir: 'cypress/reports/mochawesome',
-    overwrite: false,
-    html: false,
-    json: true
-  },
   
   e2e: {
+    reporter: 'spec',
     chromeWebSecurity: true,
     specPattern: 'cypress/e2e/**/*.cy.js',
     env: {
@@ -30,12 +24,7 @@ module.exports = defineConfig({
         }
       });
 
-      // 修改测试完成后的回调
-      on('after:run', async (results) => {
-        if (results && results.totalTests > 0) {  // 确保有测试运行完成
-          await generateReport();
-        }
-      });
+      
     },
   },
 });

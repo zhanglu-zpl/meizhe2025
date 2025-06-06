@@ -1,5 +1,6 @@
 import { setupTest } from './common.js';
 import { BaseWatermarkTest } from './common/baseWatermark.js';
+import '@shelex/cypress-allure-plugin';
 
 describe('水印功能测试套件', () => {
   beforeEach(() => {
