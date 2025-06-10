@@ -1,13 +1,13 @@
 import { setupTest } from './common.js';
 import { BaseWatermarkTest } from './common/baseWatermark.js';
-import '@shelex/cypress-allure-plugin';
 
 describe('水印功能测试套件', () => {
   beforeEach(() => {
     setupTest();
   });
 
-  it('运行1:1水印测试', () => {
+  it.only('运行1:1水印测试', () => {
+    cy.log('测试开始');
     const watermarkTest = new BaseWatermarkTest('1:1');
     watermarkTest.createWatermark();
     watermarkTest.modifyact();
@@ -16,6 +16,7 @@ describe('水印功能测试套件', () => {
     watermarkTest.addproducts();
     watermarkTest.copyactivity();
     watermarkTest.otheroperations();
+    cy.log('测试结束');
   });
 
   it('运行3:4水印测试', () => {
@@ -50,9 +51,5 @@ describe('水印功能测试套件', () => {
     watermarkTest.copyactivity();
     watermarkTest.otheroperations();
   });
-
-  after(() => {
-    // 所有测试完成后生成报告
-    cy.exec('node generate-report.js', { failOnNonZeroExit: false });
-  });
-});
+  
+}); 

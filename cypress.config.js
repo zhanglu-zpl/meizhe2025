@@ -1,30 +1,47 @@
-const { defineConfig } = require("cypress");
-const allureWriter = require('@shelex/cypress-allure-plugin/writer');
+const { defineConfig } = require('cypress');
+const webpackPreprocessor = require('@cypress/webpack-preprocessor');
+const timersPath = require.resolve('timers-browserify');
+console.log('Resolved timers path:', timersPath); // 确认路径解析正常
 
 module.exports = defineConfig({
-  
   e2e: {
-    reporter: 'spec',
-    chromeWebSecurity: true,
-    specPattern: 'cypress/e2e/**/*.cy.js',
-    env: {
-      session: "dacbfb8d-f043-4ea7-9ed8-2b285bf7458e",
-    },
+    baseUrl: 'https://meizhe.meideng.net',
+    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    viewportWidth: 1440,
+    viewportHeight: 900,
+    video: true,
+    videoUploadOnPasses: false,
+    retries: 1, 
     setupNodeEvents(on, config) {
-      // 设置下载目录
-      on('before:browser:launch', (browser, options) => {
-        if (browser.family === 'chromium' && browser.name !== 'electron') {
-          options.preferences.default['download'] = { default_directory: 'cypress/downloads' };
-          return options;
+      console.log('Setting up Node events');
+      const options = {
+        webpackOptions: {
+          resolve: { 
+            fallback: { 
+              "fs": false, 
+              "path": require.resolve("path-browserify"), 
+              "util": require.resolve("util/"), 
+              "stream": require.resolve("stream-browserify"), 
+              "constants": require.resolve("constants-browserify"), 
+              "assert": require.resolve("assert/"), 
+              "string_decoder": require.resolve("string_decoder/"), 
+              "url": require.resolve("url/"), 
+              "events": require.resolve("events/"), 
+              "module": false, 
+              "timers": require.resolve("timers-browserify")
+            }
+          }
         }
-        if (browser.family === 'firefox') {
-          options.preferences['browser.download.dir'] = 'cypress/downloads';
-          options.preferences['browser.download.folderList'] = 2;
-          return options;
-        }
-      });
-
-      
-    },
+      };
+      on('file:preprocessor', webpackPreprocessor(options));
+      return config;
+    }
   },
+  reporter: 'mochawesome',
+  reporterOptions: {
+    output: 'mochawesome-report',
+    overwrite: false,
+    html: false,
+    json: true
+  }
 });

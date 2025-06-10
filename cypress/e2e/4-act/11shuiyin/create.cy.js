@@ -15,10 +15,11 @@ export const createWatermark = () => {
   
       //点击新功能引导，我知道了
       cy.contains('我知道了').should('be.visible').click();
+
+      cy.wait(3000);
     
         // 等待页面跳转跳到指定 URL
         cy.url().should('include', 'shuiyin-new/template');
-        
         
         
         // 检查是否进入主图水印并点击高级版
