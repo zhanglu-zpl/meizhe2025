@@ -13,29 +13,8 @@ module.exports = defineConfig({
     videoUploadOnPasses: false,
     retries: 1, 
     setupNodeEvents(on, config) {
-      console.log('Setting up Node events');
-      const options = {
-        webpackOptions: {
-          resolve: { 
-            fallback: { 
-              "fs": false, 
-              "path": require.resolve("path-browserify"), 
-              "util": require.resolve("util/"), 
-              "stream": require.resolve("stream-browserify"), 
-              "constants": require.resolve("constants-browserify"), 
-              "assert": require.resolve("assert/"), 
-              "string_decoder": require.resolve("string_decoder/"), 
-              "url": require.resolve("url/"), 
-              "events": require.resolve("events/"), 
-              "module": false, 
-              "timers": require.resolve("timers-browserify")
-            }
-          }
-        }
-      };
-      on('file:preprocessor', webpackPreprocessor(options));
-      return config;
-    }
+      // implement node event listeners here
+    },
   },
   reporter: 'mochawesome',
   reporterOptions: {

@@ -3,8 +3,8 @@ export const createWatermark = () => {
 
         // 创建水印活动
         // 检查页面是否有主图水印按钮并点击
-        cy.contains('主图水印').should('be.visible').click();
-        cy.wait(7000);
+    cy.contains('主图水印').should('be.visible').click();
+    cy.wait(7000);
         
         // 处理"多尺寸水印上线"弹窗
      cy.get('body').then($body => {
