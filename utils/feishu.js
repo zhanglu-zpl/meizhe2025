@@ -1,16 +1,12 @@
 const axios = require('axios');
-
-async function sendFeishuMessage(webhook, message) {
-    try {
-        await axios.post(webhook, {
-            msg_type: "text",
-            content: {
-                text: message
-            }
-        });
-    } catch (error) {
-        console.error('发送飞书消息失败:', error);
-    }
+module.exports.sendFeishuMessage = async (webhook, message) => {
+  try {
+    await axios.post(webhook, {
+      msg_type: "text",
+      content: { text: message }
+    });
+    return true;
+  } catch (e) {
+    throw new Error(`飞书发送失败: ${e.message}`);
+  }
 }
-
-module.exports = { sendFeishuMessage };

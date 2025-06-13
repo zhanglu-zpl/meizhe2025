@@ -1,8 +1,4 @@
 export class BaseWatermarkTest {
-  constructor(ratio) {
-    this.ratio = ratio;
-    this.entryPath = ratio === '3:4' ? '/watermark-34' : '/watermark-11';
-  }
 
   createWatermark() {
     // 后续的创建步骤都一样，直接调用原有的方法
@@ -32,4 +28,20 @@ export class BaseWatermarkTest {
   otheroperations() {
     return require('../11shuiyin/other.cy.js').otheroperations();
   }
+
+  create34Watermark() {
+    return require('../34shuiyin/create34.cy.js').create34Watermark();
+  }
+
+  create23Watermark() {
+    return require('../23shuiyin/create23.cy.js').create23Watermark();
+  }
+
+  create112334Watermark() {
+    return require('../112334shuiyin/create112334.cy.js').create112334Watermark();
+  }
+
+  
+
+
 }

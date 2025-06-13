@@ -1,0 +1,178 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 0,
+    "pending": 0,
+    "failures": 4,
+    "start": "2025-06-12T06:07:18.006Z",
+    "end": "2025-06-12T06:07:58.089Z",
+    "duration": 40083,
+    "testsRegistered": 4,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "54f541ba-f5a7-4aa0-972e-9f1c840b8995",
+      "title": "",
+      "fullFile": "cypress\\e2e\\4-act\\act-suite.cy.js",
+      "file": "cypress\\e2e\\4-act\\act-suite.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "5c7d6328-f274-4780-803b-9e7dbc6c0a06",
+          "title": "水印功能测试套件",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "运行1:1水印测试",
+              "fullTitle": "水印功能测试套件 运行1:1水印测试",
+              "timedOut": null,
+              "duration": 4846,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "cy.log('测试开始');\nconst watermarkTest = new _baseWatermark.BaseWatermarkTest('1:1');\nwatermarkTest.createWatermark();\nwatermarkTest.modifyact();\nwatermarkTest.modifyWatermark();\nwatermarkTest.restartWatermark();\nwatermarkTest.addproducts();\nwatermarkTest.copyactivity();\nwatermarkTest.otheroperations();",
+              "err": {
+                "message": "TypeError: cy.get(...).eq(...).realHover is not a function",
+                "estack": "TypeError: cy.get(...).eq(...).realHover is not a function\n    at Object.createWatermark (webpack://meizhe2025/./cypress/e2e/4-act/11shuiyin/create.cy.js:29:37)\n    at BaseWatermarkTest.createWatermark (webpack://meizhe2025/./cypress/e2e/4-act/common/baseWatermark.js:9:64)\n    at Context.eval (webpack://meizhe2025/./cypress/e2e/4-act/act-suite.cy.js:15:18)",
+                "diff": null
+              },
+              "uuid": "2dd254ec-9903-4bf5-91f5-9c17cd6cd054",
+              "parentUUID": "5c7d6328-f274-4780-803b-9e7dbc6c0a06",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "运行3:4水印测试",
+              "fullTitle": "水印功能测试套件 运行3:4水印测试",
+              "timedOut": null,
+              "duration": 4329,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const watermarkTest = new _baseWatermark.BaseWatermarkTest('3:4');\nwatermarkTest.create34Watermark();\nwatermarkTest.modifyact();\nwatermarkTest.modifyWatermark();\nwatermarkTest.restartWatermark();\nwatermarkTest.addproducts();\nwatermarkTest.copyactivity();\nwatermarkTest.otheroperations();",
+              "err": {
+                "message": "TypeError: cy.get(...).eq(...).realHover is not a function",
+                "estack": "TypeError: cy.get(...).eq(...).realHover is not a function\n    at Object.create34Watermark (webpack://meizhe2025/./cypress/e2e/4-act/34shuiyin/create34.cy.js:25:33)\n    at BaseWatermarkTest.create34Watermark (webpack://meizhe2025/./cypress/e2e/4-act/common/baseWatermark.js:37:68)\n    at Context.eval (webpack://meizhe2025/./cypress/e2e/4-act/act-suite.cy.js:29:18)",
+                "diff": null
+              },
+              "uuid": "90cb9418-16cf-49be-b264-c2d603463056",
+              "parentUUID": "5c7d6328-f274-4780-803b-9e7dbc6c0a06",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "运行2:3水印测试",
+              "fullTitle": "水印功能测试套件 运行2:3水印测试",
+              "timedOut": null,
+              "duration": 4115,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const watermarkTest = new _baseWatermark.BaseWatermarkTest('2:3');\nwatermarkTest.create23Watermark();\nwatermarkTest.modifyact();\nwatermarkTest.modifyWatermark();\nwatermarkTest.restartWatermark();\nwatermarkTest.addproducts();\nwatermarkTest.copyactivity();\nwatermarkTest.otheroperations();",
+              "err": {
+                "message": "TypeError: cy.get(...).eq(...).realHover is not a function",
+                "estack": "TypeError: cy.get(...).eq(...).realHover is not a function\n    at Object.modifyact (webpack://meizhe2025/./cypress/e2e/4-act/11shuiyin/acttime.cy.js:19:9)\n    at BaseWatermarkTest.modifyact (webpack://meizhe2025/./cypress/e2e/4-act/common/baseWatermark.js:13:59)\n    at Context.eval (webpack://meizhe2025/./cypress/e2e/4-act/act-suite.cy.js:43:18)",
+                "diff": null
+              },
+              "uuid": "a6fe0433-74c8-4c16-9d88-3e6206b9b09b",
+              "parentUUID": "5c7d6328-f274-4780-803b-9e7dbc6c0a06",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "运行多尺寸水印测试",
+              "fullTitle": "水印功能测试套件 运行多尺寸水印测试",
+              "timedOut": null,
+              "duration": 4138,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "const watermarkTest = new _baseWatermark.BaseWatermarkTest('1:1,2:3,3:4');\nwatermarkTest.create112334Watermark();\nwatermarkTest.modifyact();\nwatermarkTest.modifyWatermark();\nwatermarkTest.restartWatermark();\nwatermarkTest.addproducts();",
+              "err": {
+                "message": "TypeError: cy.get(...).eq(...).realHover is not a function",
+                "estack": "TypeError: cy.get(...).eq(...).realHover is not a function\n    at Object.create112334Watermark (webpack://meizhe2025/./cypress/e2e/4-act/112334shuiyin/create112334.cy.js:17:33)\n    at BaseWatermarkTest.create112334Watermark (webpack://meizhe2025/./cypress/e2e/4-act/common/baseWatermark.js:45:80)\n    at Context.eval (webpack://meizhe2025/./cypress/e2e/4-act/act-suite.cy.js:53:18)",
+                "diff": null
+              },
+              "uuid": "fabb3424-1ca2-4b68-92a4-a72aaa512ced",
+              "parentUUID": "5c7d6328-f274-4780-803b-9e7dbc6c0a06",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "2dd254ec-9903-4bf5-91f5-9c17cd6cd054",
+            "90cb9418-16cf-49be-b264-c2d603463056",
+            "a6fe0433-74c8-4c16-9d88-3e6206b9b09b",
+            "fabb3424-1ca2-4b68-92a4-a72aaa512ced"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 17428,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "output": "mochawesome-report",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

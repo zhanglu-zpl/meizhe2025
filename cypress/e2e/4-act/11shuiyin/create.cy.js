@@ -66,12 +66,20 @@ export const createWatermark = () => {
          //点击第一个选择商品
          cy.contains('选择商品').eq(0).click();
 
-         //点击弹窗中的确定
+
+         //若出现提示弹窗，点击确定，若没有弹窗，则跳过
+         cy.get('section._2_ksf4mi', {timeout: 10000})
+          .should('contain', '商品已参加其他同类水印计划，本计划开始时将自动应用此水印，是否加入')
+          .find('button:contains("确定")')
+          .scrollIntoView()
+          .click({force: true});
+
+        //点击商品选择中的确定
          cy.get('button.dplCurFj._10FPpG77._1O3lqufx._2NB3rG9u._1_W4UU-M.mzc-margin.mzc-margin-large').should('be.visible').click();
 
          //选择模板
          cy.contains('高级版').click();
-         cy.get('div.Q8_T2tj0._3WEGmgu3.TeWGv5Dl.mzc-row-container').should('be.visible').eq(0).click().wait(2000);
+         cy.get('button.Qrqqj4b8.LUPy_X9w').should('be.visible').eq(0).click().wait(2000);
 
          //弹层提示[确定]应用
          cy.get('button._10FPpG77._1O3lqufx._2NB3rG9u._1CC5_bmo.mzc-margin.mzc-margin-medium-horz.mzc-margin-small-vert').should('be.visible').click();
@@ -89,4 +97,4 @@ export const createWatermark = () => {
 
          cy.wait(10000);
 
-};     
+};
