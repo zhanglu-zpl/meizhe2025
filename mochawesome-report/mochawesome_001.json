@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-06-12T06:08:01.085Z",
+    "end": "2025-06-12T06:08:16.510Z",
+    "duration": 15425,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d176c5d0-6ae7-4442-b148-2e5559e896c1",
+      "title": "",
+      "fullFile": "cypress\\e2e\\4-act\\ptdzcj.cy.js",
+      "file": "cypress\\e2e\\4-act\\ptdzcj.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "48081713-8b19-4197-ad6e-d114648970c9",
+          "title": "创建折扣",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "查看活动信息 - 修改信息",
+              "fullTitle": "创建折扣 查看活动信息 - 修改信息",
+              "timedOut": null,
+              "duration": 6226,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "//进入活动列表页面\ncy.visit(\"https://meizhe.meideng.net/huodong/list-v2\");\n// 点击第一个活动卡片的修改信息按钮\ncy.get('a.mz-btn.btn-primary').eq(0).click();\n// 弹窗出现 下拉选择框切换价格标签\ncy.get('.icon.icon-shangxia._1gtuj15A.mzc-margin.mzc-margin-xs._31h4mzq8').should('be.visible').click();\n// 选择价格标签\ncy.contains('优惠价').should('be.visible').click();\n//修改开始时间为未来时间\ncy.get('.icon.icon-rili.mzc-margin.mzc-margin-xs._2qi1lOc-._31h4mzq8').eq(0).click();\n// 选择未来时间\ncy.get('.icon.icon-xiayiye.mzc-margin.mzc-margin-xs.HRUNDkK3').click();\n// 点击确定按钮\ncy.get('.button._10FPpG77._1O3lqufx._2NB3rG9u._3PMLNtoR.mzc-margin.mzc-margin-small-horz.mzc-margin-xs-vert').click();\n//修改结束时间为比开始时间晚一天\ncy.get('.icon.icon-rili.mzc-margin.mzc-margin-xs._2qi1lOc-._31h4mzq8').eq(1).click();\n// 选择未来时间\ncy.get('.icon.icon-xiayiye.mzc-margin.mzc-margin-xs.HRUNDkK3').click();\n// 点击确定按钮\ncy.contains('确定').eq(0).click();\n// 点击确定按钮\ncy.contains('确定').click();\n// 确认修改成功\ncy.contains('修改成功').should('be.visible');",
+              "err": {
+                "message": "CypressError: Timed out retrying after 4000ms: The command was expected to run against origin `https://meizhe.meideng.net` but the application is at origin `https://oauth.taobao.com`.\n\nThis commonly happens when you have either not navigated to the expected origin or have navigated away unexpectedly.\n\nUsing `cy.origin()` to wrap the commands run on `https://oauth.taobao.com` will likely fix this issue.\n\n`cy.origin('https://oauth.taobao.com', () => {`\n`  <commands targeting https://oauth.taobao.com go here>`\n`})`\n\nhttps://on.cypress.io/cy-visit-succeeded-but-commands-fail",
+                "estack": "CypressError: Timed out retrying after 4000ms: The command was expected to run against origin `https://meizhe.meideng.net` but the application is at origin `https://oauth.taobao.com`.\n\nThis commonly happens when you have either not navigated to the expected origin or have navigated away unexpectedly.\n\nUsing `cy.origin()` to wrap the commands run on `https://oauth.taobao.com` will likely fix this issue.\n\n`cy.origin('https://oauth.taobao.com', () => {`\n`  <commands targeting https://oauth.taobao.com go here>`\n`})`\n\nhttps://on.cypress.io/cy-visit-succeeded-but-commands-fail\n    at cypressErr (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:76065:18)\n    at Object.errByPath (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:76119:10)\n    at Object.commandCanCommunicateWithAUT (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:145064:90)\n    at <unknown> (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:131970:22)\n    at Object.subjectFn (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:143866:16)\n    at $Cy.verifyUpcomingAssertions (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:143205:31)\n    at onRetry (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:143857:15)\n    at tryCatcher (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise.attempt.Promise.try (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:4338:29)\n    at whenStable (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:143744:68)\n    at <unknown> (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:143685:14)\n    at tryCatcher (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:1830:23)\n    at Promise._settlePromiseFromHandler (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:1542:31)\n    at Promise._settlePromise (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:1599:18)\n    at Promise._settlePromise0 (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:1644:10)\n    at Promise._settlePromises (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:1724:18)\n    at Promise._fulfill (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:1668:18)\n    at <unknown> (https://meizhe.meideng.net/__cypress/runner/cypress_runner.js:5473:46)\nFrom Your Spec Code:\n    at Context.eval (webpack://meizhe2025/./cypress/e2e/4-act/ptdzcj.cy.js:78:9)",
+                "diff": null
+              },
+              "uuid": "3d3a9365-cf7a-4fad-892f-8d86a23ea5dd",
+              "parentUUID": "48081713-8b19-4197-ad6e-d114648970c9",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "3d3a9365-cf7a-4fad-892f-8d86a23ea5dd"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 6226,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "output": "mochawesome-report",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

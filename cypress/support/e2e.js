@@ -15,6 +15,7 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import "cypress-fs";
 
 Cypress.on('uncaught:exception', (e, runnable) => {
     console.log('捕获到异常:', e.message);

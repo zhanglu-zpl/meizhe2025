@@ -73,12 +73,13 @@ module.exports = defineConfig({
           return sendFeishuMessage(webhook, message);
         }
       });
+      return require("cypress-fs/plugins")(on, config);
     },
 
   },
   reporter: 'mochawesome',
   reporterOptions: {
-    output: 'mochawesome-report',
+    output: path.resolve(__dirname, 'mochawesome-report'),
     overwrite: false,
     html: false,
     json: true
