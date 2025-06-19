@@ -1,7 +1,8 @@
-import { sendFeishuMessage } from '../../support/generate-feishu-report.js';
+
 import { setupTest } from './common.js';
 import { BaseWatermarkTest } from './common/baseWatermark.js';
-const Path = require('path');
+import 'cypress-real-events/support';
+
 
 describe('水印功能测试套件', () => {
   beforeEach(() => {
@@ -12,12 +13,12 @@ describe('水印功能测试套件', () => {
     cy.log('测试开始');
     const watermarkTest = new BaseWatermarkTest('1:1');
     watermarkTest.createWatermark();
-    // watermarkTest.modifyact();
-    // watermarkTest.modifyWatermark();
-    // watermarkTest.restartWatermark();
-    // watermarkTest.addproducts();
-    // watermarkTest.copyactivity();
-    // watermarkTest.otheroperations();
+    watermarkTest.modifyact();
+    watermarkTest.modifyWatermark();
+    watermarkTest.restartWatermark();
+    watermarkTest.addproducts();
+    watermarkTest.copyactivity();
+    watermarkTest.otheroperations();
   });
 
   it('运行3:4水印测试', () => {
@@ -64,17 +65,12 @@ describe('水印功能测试套件', () => {
 
   // 测试套件结束后生成报告并发送到飞书
   after(() => {
-    cy.log('[调试] 进入全局 after 钩子');
-   
-    const reportPath = Path.join(Cypress.config('reporterOptions').output, 'mochawesome.json');
-    
-    cy.readFile(reportPath).then((report) => {
-      try {
-        sendFeishuMessage(report);
-        cy.log('测试报告已成功发送到飞书');
-      } catch (error) {
-        cy.log(`发送飞书报告失败: ${error.message}`);
+    cy.task('generateReport').then((result) => {
+      if (result.success) {
+        cy.log('测试报告生成成功');
       }
-    });
+    })
+     
   });
 });
+
